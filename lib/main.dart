@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'pages/home_page.dart';
+import 'pages/admin_page.dart';
+import 'pages/adviser_page.dart';
+import 'pages/student_page.dart';
+import 'pages/login_page.dart';
+import 'pages/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,47 +17,39 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My Developer Profile',
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueGrey[50],
-          title: const Text('My Developer Profile'),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              // Full Name
-              Icon(Icons.person, size: 80),
-              SizedBox(height: 10),
-              Text(
-                'Roshaine Barrios',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-
-              SizedBox(height: 10),
-
-              // Section
-              Text('BSIT-3A'),
-
-              SizedBox(height: 10),
-
-              // Age
-              Text('Age: 21'),
-
-              SizedBox(height: 10),
-
-              // Hobbies
-              Text('Hobbies:'),
-              SizedBox(height: 5),
-              Text('• Coding'),
-              Text('• Watching Movies'),
-              Text('• Playing Mobile Games'),
-            ],
+      title: 'Web-Based Capstone Project Monitoring System',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        primaryColor: Colors.indigo,
+        appBarTheme: const AppBarTheme(centerTitle: true, elevation: 2),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size.fromHeight(48),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
         ),
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 14,
+          ),
+        ),
+        // cardTheme left default to avoid SDK compatibility issues
+        scaffoldBackgroundColor: Colors.grey.shade50,
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/admin': (context) => const AdminPage(),
+        '/adviser': (context) => const AdviserPage(),
+        '/student': (context) => const StudentPage(),
+        '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignupPage(),
+      },
     );
   }
 }
